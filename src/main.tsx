@@ -2,6 +2,8 @@ import { App } from '@/app';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import '@app/styles/style.scss';
+
 const rootElement = document.querySelector('#root');
 
 if (rootElement) {
