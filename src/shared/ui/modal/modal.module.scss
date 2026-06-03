@@ -1,0 +1,52 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+
+  background-color: rgba(151, 151, 151, 0.4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  animation: overlayEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card {
+  width: 100%;
+  max-width: 540px;
+  will-change: transform, opacity, filter;
+
+  animation: cardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modalBody {
+  padding: 32px;
+}
+
+@keyframes overlayEnter {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
