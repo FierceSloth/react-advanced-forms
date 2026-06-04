@@ -1,8 +1,13 @@
-import { GlassCard } from '@/shared/ui/glass-card';
-import { useEffect, type ReactNode } from 'react';
+import classNames from 'classnames';
+import { useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
-import classNames from 'classnames';
+import { GlassCard } from '@/shared/ui/glass-card';
+
+import { useClickOutside } from '@/shared/lib/hooks/use-click-outside';
+import { useEscapeKey } from '@/shared/lib/hooks/use-escape-key';
+import { useScrollLock } from '@/shared/lib/hooks/use-scroll-lock';
+
 import styles from './modal.module.scss';
 
 interface IProps {
@@ -13,29 +18,21 @@ interface IProps {
 }
 
 export function Modal({ className, isOpen, onClose, children }: IProps): ReactNode {
-  useEffect(() => {
-    if (!isOpen) return;
+  const cardReference = useRef<HTMLDivElement>(null);
 
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape') onClose();
-    };
-
-    document.body.style.overflow = 'hidden';
-    globalThis.addEventListener('keydown', handleKeyDown);
-
-    return (): void => {
-      document.body.style.overflow = '';
-      globalThis.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, onClose]);
+  useEscapeKey(onClose, isOpen);
+  useClickOutside(cardReference, onClose, isOpen);
+  useScrollLock(isOpen);
 
   if (!isOpen) return null;
 
   return createPortal(
-    <div className={styles.overlay} onClick={onClose}>
-      <GlassCard className={classNames(styles.card, className)} onClick={(event) => event.stopPropagation()}>
-        <div className={styles.modalBody}>{children}</div>
-      </GlassCard>
+    <div className={styles.overlay}>
+      <div ref={cardReference} className={styles.contentWrapper}>
+        <GlassCard className={classNames(styles.card, className)}>
+          <div className={styles.modalBody}>{children}</div>
+        </GlassCard>
+      </div>
     </div>,
     document.body
   );
