@@ -1,0 +1,40 @@
+.input {
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+
+  padding: 10px 16px;
+  margin-top: 4px;
+
+  font-size: 14px;
+
+  outline: none;
+  transition: all 0.3s;
+
+  &::placeholder {
+    color: var(--border-subtle);
+  }
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.errorContainer {
+  margin-top: 4px;
+  height: 12px;
+}
+
+.errorMessage {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--error-core);
+  letter-spacing: 0.5px;
+  display: block;
+}
