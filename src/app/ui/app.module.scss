@@ -36,7 +36,6 @@
 }
 
 .container {
-  box-sizing: border-box;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
@@ -49,4 +48,57 @@
   @include media-sm {
     padding: 0 15px;
   }
+}
+
+.title {
+  text-align: center;
+  margin: 24px 0;
+  font-family: var(--font-sans);
+}
+
+.uiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+}
+
+.demoCard {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  h2 {
+    margin: 0 0 16px 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.passwordSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 8px 0;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalActions {
+  margin-top: 16px;
 }
