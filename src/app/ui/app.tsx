@@ -7,6 +7,7 @@ import { Input } from '@shared/ui/input';
 import { Modal } from '@shared/ui/modal';
 import { PasswordStrength } from '@shared/ui/password-strength';
 
+import { FileInput } from '@/shared/ui/file-input';
 import styles from './app.module.scss';
 
 export function App(): ReactNode {
@@ -27,6 +28,7 @@ export function App(): ReactNode {
             <div className={styles.cardContent}>
               <Input label="Email Address" placeholder="hello@example.com" />
               <Input label="Username" placeholder="Enter username" error="This username is already taken" />
+              <FileInput label="Profile Picture" />
               <div className={styles.passwordSection}>
                 <Input
                   label="Password"
