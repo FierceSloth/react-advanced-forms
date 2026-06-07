@@ -1,12 +1,8 @@
 import classNames from 'classnames';
-import { useRef, type ReactNode } from 'react';
+import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { GlassCard } from '@/shared/ui/glass-card';
-
-import { useClickOutside } from '@/shared/lib/hooks/use-click-outside';
-import { useEscapeKey } from '@/shared/lib/hooks/use-escape-key';
-import { useScrollLock } from '@/shared/lib/hooks/use-scroll-lock';
 
 import styles from './modal.module.scss';
 
@@ -18,22 +14,56 @@ interface IProps {
 }
 
 export function Modal({ className, isOpen, onClose, children }: IProps): ReactNode {
-  const cardReference = useRef<HTMLDivElement>(null);
+  const dialogReference = useRef<HTMLDialogElement>(null);
 
-  useEscapeKey(onClose, isOpen);
-  useClickOutside(cardReference, onClose, isOpen);
-  useScrollLock(isOpen);
+  useEffect(() => {
+    const dialogElement = dialogReference.current;
+    if (!dialogElement) return;
 
-  if (!isOpen) return null;
+    if (isOpen && !dialogElement.open) {
+      dialogElement.showModal();
+      document.body.style.overflow = 'hidden';
+    } else if (!isOpen && dialogElement.open) {
+      dialogElement.close();
+      document.body.style.overflow = '';
+    }
+
+    return (): void => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const dialogElement = dialogReference.current;
+    if (!dialogElement) return;
+
+    const handleNativeClose = (): void => {
+      onClose();
+    };
+
+    dialogElement.addEventListener('close', handleNativeClose);
+
+    return (): void => {
+      dialogElement.removeEventListener('close', handleNativeClose);
+    };
+  }, [onClose]);
+
+  const handleBackdropClick = (event: MouseEvent<HTMLDialogElement>): void => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
+  if (typeof document === 'undefined') return null;
 
   return createPortal(
-    <div className={styles.overlay}>
-      <div ref={cardReference} className={styles.contentWrapper}>
+    <dialog ref={dialogReference} className={styles.dialog} onClick={handleBackdropClick}>
+      <div className={styles.contentWrapper}>
         <GlassCard className={classNames(styles.card, className)}>
           <div className={styles.modalBody}>{children}</div>
         </GlassCard>
       </div>
-    </div>,
+    </dialog>,
     document.body
   );
 }

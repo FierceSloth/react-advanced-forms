@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import type { ReactNode } from 'react';
 
+import { checkPasswordStrength } from '@/shared/lib/utils/check-password-strength';
 import styles from './password-strength.module.scss';
 
 interface IProps {
@@ -9,12 +10,7 @@ interface IProps {
 }
 
 export function PasswordStrength({ password = '', className }: IProps): ReactNode {
-  const rules = [
-    { text: '1 number', isValid: /\d/.test(password) },
-    { text: '1 uppercase letter', isValid: /[A-Z]/.test(password) },
-    { text: '1 lowercase letter', isValid: /[a-z]/.test(password) },
-    { text: '1 special character', isValid: /[^A-Za-z0-9]/.test(password) },
-  ];
+  const rules = checkPasswordStrength(password);
 
   return (
     <div className={classNames(styles.wrapper, className)}>

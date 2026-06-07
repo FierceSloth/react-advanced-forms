@@ -1,6 +1,11 @@
-import { useEffect, type RefObject } from 'react';
+import { useEffect, useRef, type RefObject } from 'react';
 
-export function useClickOutside(ref: RefObject<HTMLElement | null>, onClose: () => void, isOpen: boolean): void {
+export function useClickOutside<T extends HTMLElement = HTMLElement>(
+  onClose: () => void,
+  isOpen: boolean
+): RefObject<T | null> {
+  const ref = useRef<T>(null);
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -17,5 +22,7 @@ export function useClickOutside(ref: RefObject<HTMLElement | null>, onClose: () 
       globalThis.removeEventListener('mousedown', handlePointerDown);
       globalThis.removeEventListener('touchstart', handlePointerDown);
     };
-  }, [ref, onClose, isOpen]);
+  }, [onClose, isOpen]);
+
+  return ref;
 }

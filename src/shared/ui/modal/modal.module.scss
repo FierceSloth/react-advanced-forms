@@ -1,24 +1,27 @@
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-modal);
+.dialog {
+  border: none;
+  background: transparent;
 
-  background-color: rgba(151, 151, 151, 0.4);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 20px;
+  width: 100%;
+  max-width: 580px;
 
-  animation: overlayEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  &::backdrop {
+    background-color: rgba(151, 151, 151, 0.4);
+    animation: overlayEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 }
 
 .card {
   width: 100%;
   max-width: 540px;
   will-change: transform, opacity, filter;
-
   animation: cardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.contentWrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .modalBody {
