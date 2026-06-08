@@ -58,11 +58,7 @@ export function Modal({ className, isOpen, onClose, children }: IProps): ReactNo
 
   return createPortal(
     <dialog ref={dialogReference} className={styles.dialog} onClick={handleBackdropClick}>
-      <div className={styles.contentWrapper}>
-        <GlassCard className={classNames(styles.card, className)}>
-          <div className={styles.modalBody}>{children}</div>
-        </GlassCard>
-      </div>
+      <GlassCard className={classNames(styles.card, className)}>{children}</GlassCard>
     </dialog>,
     document.body
   );

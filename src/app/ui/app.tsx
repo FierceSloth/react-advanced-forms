@@ -7,6 +7,7 @@ import { Input } from '@shared/ui/input';
 import { Modal } from '@shared/ui/modal';
 import { PasswordStrength } from '@shared/ui/password-strength';
 
+import { UncontrolledForm } from '@/features/forms/uncontrolled-form';
 import { FileInput } from '@/shared/ui/file-input';
 import styles from './app.module.scss';
 
@@ -57,17 +58,7 @@ export function App(): ReactNode {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className={styles.modalContent}>
-          <h2>Lorem ipsum</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis sequi aperiam neque debitis, fuga dicta
-            pariatur atque, quia repudiandae rerum accusamus provident beatae quidem consequatur officia aspernatur
-            porro ducimus. Neque!
-          </p>
-          <div className={styles.modalActions}>
-            <Button onClick={() => setIsModalOpen(false)}>Close Modal</Button>
-          </div>
-        </div>
+        <UncontrolledForm />
       </Modal>
     </>
   );
