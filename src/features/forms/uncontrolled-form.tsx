@@ -8,6 +8,7 @@ import { FileInput } from '@/shared/ui/file-input';
 import { Input } from '@/shared/ui/input';
 import { PasswordStrength } from '@/shared/ui/password-strength';
 
+import { Select } from '@/shared/ui/select';
 import styles from './forms.module.scss';
 
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -31,23 +32,20 @@ export function UncontrolledForm(): ReactNode {
           <Input name="age" label="Age" placeholder="25" type="number" />
           <Input name="email" label="Email Address" placeholder="john@example.com" type="email" />
 
-          <div>
-            <label htmlFor="gender-select">Gender</label>
-            <select id="gender-select" name="gender">
-              <option value="" disabled selected>
-                Select...
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-
           <Input name="country" label="Country" placeholder="Start typing..." list="country-list" />
           <datalist id="country-list">
             {countries.map((country) => (
               <option key={country} value={country} />
             ))}
           </datalist>
+
+          <Select name="gender" label="Gender">
+            <option value="" disabled selected>
+              Select...
+            </option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </Select>
 
           <FileInput name="image" label="Profile Picture" />
 
