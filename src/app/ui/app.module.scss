@@ -43,10 +43,10 @@
   flex-direction: column;
   flex: 1;
 
-  padding: 0 20px;
+  padding: 60px 40px;
 
   @include media-sm {
-    padding: 0 15px;
+    padding: 30px 20px;
   }
 }
 
