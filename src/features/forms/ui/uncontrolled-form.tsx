@@ -36,6 +36,7 @@ export function UncontrolledForm({ onSuccess }: IProps): ReactNode {
     const dataToValidate = {
       ...rawData,
       acceptTerms: formData.get('acceptTerms') === 'on',
+      image: formData.getAll('image'),
     };
 
     const schema = createFormSchema(countries);

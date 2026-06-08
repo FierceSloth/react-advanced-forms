@@ -46,17 +46,14 @@ export function ControlledForm({ onSuccess }: IProps): ReactNode {
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     try {
       let base64Image = '';
-
       if (data.image instanceof File) {
         base64Image = await fileToBase64(data.image);
       }
 
       const finalData = createFinalSubmission(data, base64Image);
-
       dispatch(addSubmission(finalData));
 
       reset();
-
       if (onSuccess) {
         onSuccess();
       }

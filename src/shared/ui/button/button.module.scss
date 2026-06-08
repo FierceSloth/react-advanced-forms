@@ -23,6 +23,10 @@
   &:active {
     transform: scale(0.98);
   }
+
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 .buttonCore {
