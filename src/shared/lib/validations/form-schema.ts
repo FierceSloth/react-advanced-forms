@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { checkPasswordStrength } from '@/shared/lib/utils/check-password-strength';
 import z from 'zod';
 
 export const createFormSchema = (validCountries: string[]) => {
@@ -12,7 +13,14 @@ export const createFormSchema = (validCountries: string[]) => {
           return value[0] === value[0].toUpperCase();
         }, 'The name must begin with a capital letter'),
 
-      age: z.coerce.number().min(0, 'Age cannot be negative'),
+      age: z.coerce
+        .number()
+        .int('Age must be an integer')
+        .min(0, 'Age cannot be negative')
+        .max(150, 'Are you sure?')
+        .refine((value) => value >= 18, {
+          message: 'You must be at least 18 years old to register',
+        }),
 
       email: z.string().refine((value) => {
         const parts = value.trim().split('@');
@@ -28,7 +36,13 @@ export const createFormSchema = (validCountries: string[]) => {
 
       gender: z.string().min(1, 'Select gender'),
 
-      password: z.string().min(1, 'Enter your password'),
+      password: z
+        .string()
+        .min(1, 'Enter your password')
+        .refine((value) => {
+          const rules = checkPasswordStrength(value);
+          return rules.every((rule) => rule.isValid);
+        }, 'The password does not meet all security requirements'),
       confirmPassword: z.string().min(1, 'Confirm your password'),
 
       country: z.string().refine((value) => validCountries.includes(value), 'Select a country from the list below'),
