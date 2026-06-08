@@ -7,7 +7,7 @@ import { Input } from '@shared/ui/input';
 import { Modal } from '@shared/ui/modal';
 import { PasswordStrength } from '@shared/ui/password-strength';
 
-import { UncontrolledForm } from '@/features/forms/uncontrolled-form';
+import { UncontrolledForm } from '@/features/forms';
 import { FileInput } from '@/shared/ui/file-input';
 import styles from './app.module.scss';
 
@@ -58,7 +58,7 @@ export function App(): ReactNode {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <UncontrolledForm />
+        <UncontrolledForm onSuccess={() => setIsModalOpen(false)} />
       </Modal>
     </>
   );

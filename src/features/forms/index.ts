@@ -1,1 +1,2 @@
-export { UncontrolledForm } from './uncontrolled-form';
+export { ControlledForm } from './ui/controlled-form';
+export { UncontrolledForm } from './ui/uncontrolled-form';

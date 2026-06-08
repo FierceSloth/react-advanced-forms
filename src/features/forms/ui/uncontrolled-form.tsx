@@ -2,9 +2,10 @@ import { useAppDispatch, useAppSelector } from '@/app/store';
 import { selectCountries } from '@/app/store/country';
 import { useState, type ReactNode } from 'react';
 
-import { addSubmission, type Gender } from '@/app/store/submission';
+import { addSubmission } from '@/app/store/submission';
 import { fileToBase64 } from '@/shared/lib/utils/file-to-base64';
 import { createFormSchema } from '@/shared/lib/validations/form-schema';
+import { createFinalSubmission } from '../lib/utils/create-final-submission';
 
 import { Button } from '@/shared/ui/button';
 import { Checkbox } from '@/shared/ui/checkbox';
@@ -62,13 +63,7 @@ export function UncontrolledForm({ onSuccess }: IProps): ReactNode {
         base64Image = await fileToBase64(result.data.image);
       }
 
-      const finalData = {
-        ...result.data,
-        gender: result.data.gender as Gender,
-        id: crypto.randomUUID(),
-        image: base64Image,
-        timestamp: Date.now(),
-      };
+      const finalData = createFinalSubmission(result.data, base64Image);
 
       dispatch(addSubmission(finalData));
 

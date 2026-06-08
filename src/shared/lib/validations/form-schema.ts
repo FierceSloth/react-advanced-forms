@@ -48,9 +48,11 @@ export const createFormSchema = (validCountries: string[]) => {
       country: z.string().refine((value) => validCountries.includes(value), 'Select a country from the list below'),
 
       image: z
-        .file('Please upload a file')
-        .refine((file) => file?.size <= 5_000_000, 'File size must not exceed 5 MB')
-        .refine((file) => ['image/jpeg', 'image/png'].includes(file?.type), 'Only .jpg and .png formats'),
+        .custom<FileList>()
+        .refine((files) => files?.length > 0, 'Please upload a file')
+        .refine((files) => files?.[0]?.size <= 5_000_000, 'File size must not exceed 5 MB')
+        .refine((files) => ['image/jpeg', 'image/png'].includes(files?.[0]?.type || ''), 'Only .jpg and .png formats')
+        .transform((files) => files[0]),
 
       acceptTerms: z.boolean().refine((value) => value === true, 'You must accept the terms and conditions'),
     })
