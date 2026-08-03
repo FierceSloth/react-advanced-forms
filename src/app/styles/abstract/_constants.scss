@@ -1,0 +1,31 @@
+:root {
+  --bg-base: #f4f7f9;
+  --ambient-light-1: #ffffff;
+  --ambient-light-2: #e0ebf5;
+
+  --energy-core: #3cda6b;
+  --energy-glow: rgba(60, 218, 107, 0.6);
+  --energy-dark: #24b050;
+
+  --error-core: #ff5f52;
+  --error-glow: rgba(255, 95, 82, 0.2);
+
+  --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.8) 0%, rgba(242, 247, 250, 0.8) 100%);
+  --glass-border-light: rgba(255, 255, 255, 0.9);
+  --glass-border-dark: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.08);
+
+  --border-subtle: rgba(224, 229, 238, 0.6);
+
+  --text-main: #1d242d;
+  --text-muted: #8da0b3;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --z-behind: -1;
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 100;
+  --z-modal: 1000;
+  --z-popover: 2000;
+}

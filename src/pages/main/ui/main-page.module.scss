@@ -1,0 +1,74 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 36px;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  width: 50%;
+  display: flex;
+  gap: 20px;
+
+  .button {
+    flex: 1;
+    width: auto;
+  }
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 64px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  border: 1px dashed var(--border-subtle);
+  border-radius: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.newCardGlow {
+  animation: highlightGlow 3s ease-out forwards;
+}
+
+@keyframes highlightGlow {
+  0% {
+    border-color: var(--energy-core);
+    box-shadow: 0 0 12px var(--energy-glow);
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

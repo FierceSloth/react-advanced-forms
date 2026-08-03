@@ -1,0 +1,104 @@
+@use '@app/styles/abstract/mixins' as *;
+
+.environment {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-behind);
+  background:
+    radial-gradient(circle at 20% 30%, var(--ambient-light-1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, var(--ambient-light-2) 0%, transparent 50%);
+  filter: blur(60px);
+}
+
+.gridFloor {
+  position: fixed;
+  z-index: var(--z-behind);
+  bottom: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+
+  background-image:
+    linear-gradient(rgba(141, 160, 179, 0.2) 1px, transparent 2px),
+    linear-gradient(90deg, rgba(141, 160, 179, 0.2) 1px, transparent 2px);
+  background-size: 40px 40px;
+
+  background-position: center bottom;
+
+  transform: perspective(1000px) rotateX(75deg);
+  opacity: 0.5;
+
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  -webkit-mask-image: linear-gradient(to bottom, transparent 30%, black 70%);
+  mask-image: linear-gradient(to bottom, transparent 30%, black 70%);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 60px 40px;
+
+  @include media-sm {
+    padding: 30px 20px;
+  }
+}
+
+.title {
+  text-align: center;
+  margin: 24px 0;
+  font-family: var(--font-sans);
+}
+
+.uiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+}
+
+.demoCard {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  h2 {
+    margin: 0 0 16px 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.passwordSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 8px 0;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalActions {
+  margin-top: 16px;
+}

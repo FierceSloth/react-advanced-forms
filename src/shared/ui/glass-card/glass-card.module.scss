@@ -1,0 +1,26 @@
+.glassCard {
+  position: relative;
+
+  z-index: var(--z-base);
+
+  border-radius: 32px;
+  border: 1px solid var(--glass-border-light);
+  border-bottom-color: var(--glass-border-dark);
+  border-right-color: var(--glass-border-dark);
+  box-shadow: var(--glass-shadow);
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    inset: 0;
+    z-index: var(--z-behind);
+
+    border-radius: inherit;
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(48px) saturate(180%);
+    -webkit-backdrop-filter: blur(48px) saturate(180%);
+    clip-path: inset(0 round 32px);
+  }
+}

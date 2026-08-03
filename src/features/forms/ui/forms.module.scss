@@ -1,0 +1,47 @@
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  min-height: 0;
+  gap: 24px;
+}
+
+.inputContainer {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.button {
+  flex-shrink: 0;
+}
